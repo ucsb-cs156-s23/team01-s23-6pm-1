@@ -212,7 +212,8 @@ describe("movieUtils tests", () => {
             const updatedmovie = {
                 id: 99,
                 name: "Fake Name",
-                description: "Fake Description"
+                synopsis: "Fake Synopsis",
+                cast: "Fake Cast"
             }
 
             // act
