@@ -3,7 +3,7 @@ import { hotelUtils } from "../../main/utils/hotelUtils";
 
 describe("hotelUtils tests", () => {
   const createGetItemMock = (returnValue) => (key) => {
-    if (key !== "hotel") {
+    if (key !== "hotels") {
       throw new Error("Unexpected key: " + key);
     }
     return JSON.stringify(returnValue);
@@ -30,14 +30,14 @@ describe("hotelUtils tests", () => {
         expect(result).toEqual(expected);
 
         expect(setItemSpy).toHaveBeenCalledWith(
-          "hotel",
+          "hotels",
           JSON.stringify(expected)
         );
       }
     );
 
     test("When hotels is [] in local storage, should return []", () => {
-      getItemSpy.mockImplementation(createGetItemMock([]));
+      getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, hotels: [] }));
 
       const result = hotelUtils.get();
 
@@ -174,6 +174,21 @@ describe("hotelUtils tests", () => {
       expect(result).toEqual({ error: expectedError });
       expect(setItemSpy).not.toHaveBeenCalled();
     });
+
+    test("Check that an error is returned when hotel not passed", () => {
+      // arrange
+      const threeHotels = hotelFixtures.threeHotels;
+      getItemSpy.mockImplementation(
+        createGetItemMock({ nextId: 5, hotels: threeHotels })
+      );
+
+      // act
+      const result = hotelUtils.update();
+
+      // assert
+      const expectedError = `hotel is a required parameter`;
+      expect(result).toEqual({ error: expectedError });
+    })
   });
 
   describe("del", () => {
