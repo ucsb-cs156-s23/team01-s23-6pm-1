@@ -40,7 +40,7 @@ describe("HotelForm tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <Router>
-          <HotelForm initialContents={hotelFixtures.oneRestaurant} />
+          <HotelForm initialContents={hotelFixtures.oneHotel} />
         </Router>
       </QueryClientProvider>
     );
