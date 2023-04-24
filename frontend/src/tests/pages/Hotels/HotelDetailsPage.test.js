@@ -21,6 +21,7 @@ jest.mock("main/utils/hotelUtils", () => {
           hotel: {
             id: 3,
             name: "Beverly Hills",
+            address: "1234 Main St",
             description: "Nice hotel",
           },
         };
@@ -50,6 +51,7 @@ describe("HotelDetailsPage tests", () => {
       </QueryClientProvider>
     );
     expect(screen.getByText("Beverly Hills")).toBeInTheDocument();
+    expect(screen.getByText("1234 Main St")).toBeInTheDocument();
     expect(screen.getByText("Nice hotel")).toBeInTheDocument();
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
