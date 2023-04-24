@@ -34,10 +34,13 @@ export default function HotelTable({
             Header: 'id',
             accessor: 'id', // accessor is the "key" in the data
         },
-
         {
             Header: 'Name',
             accessor: 'name',
+        },
+        {
+            Header: 'Address',
+            accessor: 'address',
         },
         {
             Header: 'Description',

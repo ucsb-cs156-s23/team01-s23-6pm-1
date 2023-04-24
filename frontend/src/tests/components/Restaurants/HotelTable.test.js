@@ -15,8 +15,8 @@ jest.mock('react-router-dom', () => ({
 describe("HotelTable tests", () => {
   const queryClient = new QueryClient();
 
-  const expectedHeaders = ["id", "Name", "Description"];
-  const expectedFields = ["id", "name", "description"];
+  const expectedHeaders = ["id", "Name", "Address", "Description"];
+  const expectedFields = ["id", "name", "address", "description"];
   const testId = "HotelTable";
 
   test("showCell function works properly", () => {
@@ -144,7 +144,7 @@ describe("HotelTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `editCallback: {"id":2,"name":"The Beverly Hills Hotel","description":"A legendary hotel known for its iconic pink façade and Hollywood glamour, this luxury hotel offers spacious rooms, a full-service spa, and a stunning outdoor pool."})`;
+    const expectedMessage = `editCallback: {"id":2,"name":"The Beverly Hills Hotel","address":"9641 Sunset Blvd, Beverly Hills, CA 90210","description":"A legendary hotel known for its iconic pink façade and Hollywood glamour, this luxury hotel offers spacious rooms, a full-service spa, and a stunning outdoor pool."})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -179,7 +179,7 @@ describe("HotelTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `detailsCallback: {"id":2,"name":"The Beverly Hills Hotel","description":"A legendary hotel known for its iconic pink façade and Hollywood glamour, this luxury hotel offers spacious rooms, a full-service spa, and a stunning outdoor pool."})`;
+    const expectedMessage = `detailsCallback: {"id":2,"name":"The Beverly Hills Hotel","address":"9641 Sunset Blvd, Beverly Hills, CA 90210","description":"A legendary hotel known for its iconic pink façade and Hollywood glamour, this luxury hotel offers spacious rooms, a full-service spa, and a stunning outdoor pool."})`;
 
     expect(message).toMatch(expectedMessage);
     restoreConsole();
@@ -212,7 +212,7 @@ describe("HotelTable tests", () => {
      // assert - check that the console.log was called with the expected message
      await(waitFor(() => expect(console.log).toHaveBeenCalled()));
      const message = console.log.mock.calls[0][0];
-     const expectedMessage = `deleteCallback: {"id":2,"name":"The Beverly Hills Hotel","description":"A legendary hotel known for its iconic pink façade and Hollywood glamour, this luxury hotel offers spacious rooms, a full-service spa, and a stunning outdoor pool."})`;
+     const expectedMessage =  `deleteCallback: {"id":2,"name":"The Beverly Hills Hotel","address":"9641 Sunset Blvd, Beverly Hills, CA 90210","description":"A legendary hotel known for its iconic pink façade and Hollywood glamour, this luxury hotel offers spacious rooms, a full-service spa, and a stunning outdoor pool."})`
      expect(message).toMatch(expectedMessage);
      restoreConsole();
   });
