@@ -1,4 +1,4 @@
-const restaurantFixtures = {
+const bookFixtures = {
     oneBook:
     [
       {
@@ -35,4 +35,4 @@ const restaurantFixtures = {
     ]
 };
 
-export { restaurantFixtures };
+export { bookFixtures };
