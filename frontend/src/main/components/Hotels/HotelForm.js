@@ -69,7 +69,7 @@ function HotelForm({ initialContents, submitAction, buttonLabel = "Create" }) {
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="description">Address</Form.Label>
+        <Form.Label htmlFor="address">Address</Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-address"}
           id="address"
