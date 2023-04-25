@@ -75,6 +75,21 @@ describe("hotelUtils tests", () => {
       expect(result).toEqual(expected);
     });
 
+    test("Check that getting a hotel by id works when id is a string", () => {
+      // arrange
+      const hotels = hotelFixtures.threeHotels;
+      getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, hotels }));
+
+      const idToGet = hotels[1].id;
+
+      // act
+      const result = hotelUtils.getById(idToGet.toString());
+
+      // assert
+      const expected = { hotel: hotels[1] };
+      expect(result).toEqual(expected);
+    })
+
     test("Check that getting a non-existing hotel returns an error", () => {
       // arrange
       const threeHotels = hotelFixtures.threeHotels;

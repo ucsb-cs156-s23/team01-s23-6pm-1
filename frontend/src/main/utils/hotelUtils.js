@@ -22,6 +22,10 @@ const getById = (id) => {
     return { error: "id is a required parameter" };
   }
 
+  // convert id from possibly a string to number
+  // this is better than using double equals (==)
+  id = Number(id)
+
   const { hotels } = get();
 
   const found = hotels.find((r) => r.id === id);
