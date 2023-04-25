@@ -9,6 +9,9 @@ import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
+import HotelIndexPage from "main/pages/Hotels/HotelIndexPage";
+import HotelDetailsPage from "main/pages/Hotels/HotelDetailsPage";
+import HotelEditPage from "main/pages/Hotels/HotelEditPage";
 
 
 function App() {
@@ -29,6 +32,11 @@ function App() {
         <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
         <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
         <Route exact path="/restaurants/" element={<RestaurantIndexPage />} />
+
+        <Route exact path="/hotels/create" element={<RestaurantCreatePage />} />
+        <Route exact path="/hotels/edit/:id" element={<HotelEditPage />} />
+        <Route exact path="/hotels/details/:id" element={<HotelDetailsPage />} />
+        <Route exact path="/hotels/" element={<HotelIndexPage />} />
 
       </Routes>
     </BrowserRouter>
