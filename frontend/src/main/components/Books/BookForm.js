@@ -58,21 +58,36 @@ function BookForm({ initialContents, submitAction, buttonLabel = "Create" }) {
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="description">Description</Form.Label>
+                <Form.Label htmlFor="author">Author</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-description"}
-                    id="description"
+                    data-testid={testIdPrefix + "-author"}
+                    id="author"
                     type="text"
-                    isInvalid={Boolean(errors.description)}
-                    {...register("description", {
-                        required: "Description is required."
+                    isInvalid={Boolean(errors.author)}
+                    {...register("author", {
+                        required: "Author is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.description?.message}
+                    {errors.author?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="genre">Genre</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-genre"}
+                    id="genre"
+                    type="text"
+                    isInvalid={Boolean(errors.genre)}
+                    {...register("genre", {
+                        required: "Genre is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.genre?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
 
             <Button
                 type="submit"
