@@ -1,6 +1,6 @@
 import React from 'react';
 import MovieForm from "main/components/Movies/MovieForm"
-import { restaurantFixtures } from 'fixtures/restaurantFixtures';
+import { movieFixtures } from 'fixtures/movieFixtures';
 
 export default {
     title: 'components/Movies/MovieForm',
@@ -23,7 +23,7 @@ Default.args = {
 export const Show = Template.bind({});
 
 Show.args = {
-    Movie: restaurantFixtures.oneMovie,
+    Movie: movieFixtures.oneMovie,
     submitText: "",
     submitAction: () => { }
 };
