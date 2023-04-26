@@ -141,7 +141,7 @@ describe("MovieTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `editCallback: {\"id\":2,\"name\":\"Nacho Libre\",\"synopsis\":\"Ignacio (Jack Black), or Nacho to his friends, works as a cook in the Mexican monastery where he grew up. The monastery is home to a host of orphans whom Nacho cares for deeply, but there is not much money to feed them properly. Nacho decides to raise money for the children by moonlighting as a Lucha Libre wrestler with his partner Esqueleto (Héctor Jiménez), but since the church forbids Lucha, Nacho must disguise his identity.\",\"cast\":\"Jack Black, Hector Jimenez, Ana de la Reguera\"})`;
+    const expectedMessage = `editCallback: {"id":2,"name":"Nacho Libre","synopsis":"Ignacio (Jack Black), or Nacho to his friends, works as a cook in the Mexican monastery where he grew up. The monastery is home to a host of orphans whom Nacho cares for deeply, but there is not much money to feed them properly. Nacho decides to raise money for the children by moonlighting as a Lucha Libre wrestler with his partner Esqueleto (Héctor Jiménez), but since the church forbids Lucha, Nacho must disguise his identity.","cast":"Jack Black, Hector Jimenez, Ana de la Reguera"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -176,7 +176,7 @@ describe("MovieTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `detailsCallback: {\"id\":2,\"name\":\"Nacho Libre\",\"synopsis\":\"Ignacio (Jack Black), or Nacho to his friends, works as a cook in the Mexican monastery where he grew up. The monastery is home to a host of orphans whom Nacho cares for deeply, but there is not much money to feed them properly. Nacho decides to raise money for the children by moonlighting as a Lucha Libre wrestler with his partner Esqueleto (Héctor Jiménez), but since the church forbids Lucha, Nacho must disguise his identity.\",\"cast\":\"Jack Black, Hector Jimenez, Ana de la Reguera\"})`;    expect(message).toMatch(expectedMessage);
+    const expectedMessage = `detailsCallback: {"id":2,"name":"Nacho Libre","synopsis":"Ignacio (Jack Black), or Nacho to his friends, works as a cook in the Mexican monastery where he grew up. The monastery is home to a host of orphans whom Nacho cares for deeply, but there is not much money to feed them properly. Nacho decides to raise money for the children by moonlighting as a Lucha Libre wrestler with his partner Esqueleto (Héctor Jiménez), but since the church forbids Lucha, Nacho must disguise his identity.","cast":"Jack Black, Hector Jimenez, Ana de la Reguera"})`;    expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
 
@@ -207,7 +207,7 @@ describe("MovieTable tests", () => {
      // assert - check that the console.log was called with the expected message
      await(waitFor(() => expect(console.log).toHaveBeenCalled()));
      const message = console.log.mock.calls[0][0];
-     const expectedMessage = `deleteCallback: {\"id\":2,\"name\":\"Nacho Libre\",\"synopsis\":\"Ignacio (Jack Black), or Nacho to his friends, works as a cook in the Mexican monastery where he grew up. The monastery is home to a host of orphans whom Nacho cares for deeply, but there is not much money to feed them properly. Nacho decides to raise money for the children by moonlighting as a Lucha Libre wrestler with his partner Esqueleto (Héctor Jiménez), but since the church forbids Lucha, Nacho must disguise his identity.\",\"cast\":\"Jack Black, Hector Jimenez, Ana de la Reguera\"})`;     expect(message).toMatch(expectedMessage);
+     const expectedMessage = `deleteCallback: {"id":2,"name":"Nacho Libre","synopsis":"Ignacio (Jack Black), or Nacho to his friends, works as a cook in the Mexican monastery where he grew up. The monastery is home to a host of orphans whom Nacho cares for deeply, but there is not much money to feed them properly. Nacho decides to raise money for the children by moonlighting as a Lucha Libre wrestler with his partner Esqueleto (Héctor Jiménez), but since the church forbids Lucha, Nacho must disguise his identity.","cast":"Jack Black, Hector Jimenez, Ana de la Reguera"})`;     expect(message).toMatch(expectedMessage);
      restoreConsole();
   });
 });
