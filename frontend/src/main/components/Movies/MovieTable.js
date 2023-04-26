@@ -21,12 +21,12 @@ export default function MovieTable({
  
     const editCallback = (cell) => {
         console.log(`editCallback: ${showCell(cell)})`);
-        navigate(`/movies/edit/${cell.row.values.id}`)
+        navigate(`/Movies/edit/${cell.row.values.id}`)
     }
 
     const detailsCallback = (cell) => {
         console.log(`detailsCallback: ${showCell(cell)})`);
-        navigate(`/movies/details/${cell.row.values.id}`)
+        navigate(`/Movies/details/${cell.row.values.id}`)
     }
 
     const columns = [

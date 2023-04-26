@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import movieTable, { showCell } from "main/components/movies/movieTable";
-import { MovieFixtures } from "fixtures/MovieFixtures";
+import MovieTable, { showCell } from "main/components/Movies/MovieTable";
+import { movieFixtures } from "fixtures/movieFixtures";
 import mockConsole from "jest-mock-console";
 
 const mockedNavigate = jest.fn();
@@ -12,12 +12,12 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedNavigate
 }));
 
-describe("movieTable tests", () => {
+describe("MovieTable tests", () => {
   const queryClient = new QueryClient();
 
   const expectedHeaders = ["id", "Name", "Synopsis", "Cast"];
   const expectedFields = ["id", "name", "synopsis", "cast"];
-  const testId = "movieTable";
+  const testId = "MovieTable";
 
   test("showCell function works properly", () => {
     const cell = {
@@ -32,7 +32,7 @@ describe("movieTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <movieTable Movies={[]} />
+          <MovieTable movies={[]} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -45,7 +45,7 @@ describe("movieTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <movieTable Movies={MovieFixtures.threemovies} />
+          <MovieTable movies={movieFixtures.threeMovies} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -61,10 +61,10 @@ describe("movieTable tests", () => {
     });
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("Cristino's Bakery");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent(movieFixtures.threeMovies[0].name);
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Freebirds");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent(movieFixtures.threeMovies[1].name);
 
     const detailsButton = screen.getByTestId(`${testId}-cell-row-0-col-Details-button`);
     expect(detailsButton).toBeInTheDocument();
@@ -85,7 +85,7 @@ describe("movieTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <movieTable Movies={MovieFixtures.threemovies} showButtons={false} />
+          <MovieTable movies={movieFixtures.threeMovies} showButtons={false} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -101,10 +101,10 @@ describe("movieTable tests", () => {
     });
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("Cristino's Bakery");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent(movieFixtures.threeMovies[0].name);
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent("Freebirds");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-name`)).toHaveTextContent(movieFixtures.threeMovies[1].name);
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
@@ -120,14 +120,14 @@ describe("movieTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <movieTable Movies={MovieFixtures.threemovies} />
+          <MovieTable movies={movieFixtures.threeMovies} />
         </MemoryRouter>
       </QueryClientProvider>
     );
 
     // assert - check that the expected content is rendered
     expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("Among Us");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent(movieFixtures.threeMovies[0].name);
 
     const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
@@ -141,7 +141,7 @@ describe("movieTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `editCallback: {"id":2,"name":"Among Us","synopsis":"A group of astronauts find out that there may be an Imposter among them!","cast":"Ryan Reynolds, Jared Leto, Jennifer Lawrence"})`;
+    const expectedMessage = `editCallback: {\"id\":2,\"name\":\"Nacho Libre\",\"synopsis\":\"Ignacio (Jack Black), or Nacho to his friends, works as a cook in the Mexican monastery where he grew up. The monastery is home to a host of orphans whom Nacho cares for deeply, but there is not much money to feed them properly. Nacho decides to raise money for the children by moonlighting as a Lucha Libre wrestler with his partner Esqueleto (Héctor Jiménez), but since the church forbids Lucha, Nacho must disguise his identity.\",\"cast\":\"Jack Black, Hector Jimenez, Ana de la Reguera\"})`;
     expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
@@ -151,17 +151,18 @@ describe("movieTable tests", () => {
     const restoreConsole = mockConsole();
 
     // act - render the component
+    const threeMovies = movieFixtures.threeMovies;
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <movieTable Movies={MovieFixtures.threemovies} />
+          <MovieTable movies={threeMovies} />
         </MemoryRouter>
       </QueryClientProvider>
     );
 
     // assert - check that the expected content is rendered
     expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("Cristino's Bakery");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent(threeMovies[0].name);
 
     const detailsButton = screen.getByTestId(`${testId}-cell-row-0-col-Details-button`);
     expect(detailsButton).toBeInTheDocument();
@@ -175,8 +176,7 @@ describe("movieTable tests", () => {
     // assert - check that the console.log was called with the expected message
     expect(console.log).toHaveBeenCalled();
     const message = console.log.mock.calls[0][0];
-    const expectedMessage = `detailsCallback: {"id":2,"name":"Among Us","synopsis":"A group of astronauts find out that there may be an Imposter among them!","cast":"Ryan Reynolds, Jared Leto, Jennifer Lawrence"})`;
-    expect(message).toMatch(expectedMessage);
+    const expectedMessage = `detailsCallback: {\"id\":2,\"name\":\"Nacho Libre\",\"synopsis\":\"Ignacio (Jack Black), or Nacho to his friends, works as a cook in the Mexican monastery where he grew up. The monastery is home to a host of orphans whom Nacho cares for deeply, but there is not much money to feed them properly. Nacho decides to raise money for the children by moonlighting as a Lucha Libre wrestler with his partner Esqueleto (Héctor Jiménez), but since the church forbids Lucha, Nacho must disguise his identity.\",\"cast\":\"Jack Black, Hector Jimenez, Ana de la Reguera\"})`;    expect(message).toMatch(expectedMessage);
     restoreConsole();
   });
 
@@ -185,17 +185,18 @@ describe("movieTable tests", () => {
     const restoreConsole = mockConsole();
 
     // act - render the component
+    const threeMovies = movieFixtures.threeMovies;
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <movieTable Movies={MovieFixtures.threemovies} />
+          <MovieTable movies={threeMovies} />
         </MemoryRouter>
       </QueryClientProvider>
     );
 
     // assert - check that the expected content is rendered
     expect(await screen.findByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent("Cristino's Bakery");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-name`)).toHaveTextContent(threeMovies[0].name);
 
     const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
@@ -206,8 +207,7 @@ describe("movieTable tests", () => {
      // assert - check that the console.log was called with the expected message
      await(waitFor(() => expect(console.log).toHaveBeenCalled()));
      const message = console.log.mock.calls[0][0];
-     const expectedMessage = `deleteCallback: {"id":2,"name":"Among Us","synopsis":"A group of astronauts find out that there may be an Imposter among them!","cast":"Ryan Reynolds, Jared Leto, Jennifer Lawrence"})`;
-     expect(message).toMatch(expectedMessage);
+     const expectedMessage = `deleteCallback: {\"id\":2,\"name\":\"Nacho Libre\",\"synopsis\":\"Ignacio (Jack Black), or Nacho to his friends, works as a cook in the Mexican monastery where he grew up. The monastery is home to a host of orphans whom Nacho cares for deeply, but there is not much money to feed them properly. Nacho decides to raise money for the children by moonlighting as a Lucha Libre wrestler with his partner Esqueleto (Héctor Jiménez), but since the church forbids Lucha, Nacho must disguise his identity.\",\"cast\":\"Jack Black, Hector Jimenez, Ana de la Reguera\"})`;     expect(message).toMatch(expectedMessage);
      restoreConsole();
   });
 });
