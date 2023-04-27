@@ -73,7 +73,7 @@ describe("BookCreatePage tests", () => {
         });
 
         await waitFor(() => expect(mockAdd).toHaveBeenCalled());
-        //await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/books"));
+        await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/books"));
 
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();

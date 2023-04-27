@@ -43,6 +43,8 @@ function App() {
         <Route exact path="/hotels/" element={<HotelIndexPage />} />
 
         <Route exact path="/books/create" element={<BookCreatePage />} />
+        <Route exact path="/books/" element={<HotelIndexPage />} />
+
 
 
       </Routes>
