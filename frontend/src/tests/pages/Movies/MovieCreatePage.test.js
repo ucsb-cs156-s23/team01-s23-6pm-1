@@ -41,7 +41,8 @@ describe("MovieCreatePage tests", () => {
             "movie": {
                 id: 3,
                 name: "South Coast Deli",
-                description: "Sandwiches and Salads"
+                synopsis: "Sandwiches and Salads",
+                cast: "lol"
             }
         });
 
@@ -57,15 +58,19 @@ describe("MovieCreatePage tests", () => {
         expect(nameInput).toBeInTheDocument();
 
 
-        const descriptionInput = screen.getByLabelText("Description");
-        expect(descriptionInput).toBeInTheDocument();
+        const synopsisInput = screen.getByLabelText("Synopsis");
+        expect(synopsisInput).toBeInTheDocument();
+
+        const castInput = screen.getByLabelText("Cast");
+        expect(castInput).toBeInTheDocument();
 
         const createButton = screen.getByText("Create");
         expect(createButton).toBeInTheDocument();
 
         await act(async () => {
             fireEvent.change(nameInput, { target: { value: 'South Coast Deli' } })
-            fireEvent.change(descriptionInput, { target: { value: 'Sandwiches and Salads' } })
+            fireEvent.change(synopsisInput, { target: { value: 'Sandwiches and Salads' } })
+            fireEvent.change(castInput, { target: { value: 'lol' } })
             fireEvent.click(createButton);
         });
 
@@ -75,7 +80,7 @@ describe("MovieCreatePage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `createdMovie: {"movie":{"id":3,"name":"South Coast Deli","description":"Sandwiches and Salads"}`
+        const expectedMessage =  `createdMovie: {"movie":{"id":3,"name":"South Coast Deli","synopsis":"Sandwiches and Salads","cast":"lol"}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();
