@@ -21,7 +21,9 @@ import BookIndexPage from "main/pages/Books/BookIndexPage";
 import BookDetailsPage from "main/pages/Books/BookDetailsPage";
 
 import MovieCreatePage from "main/pages/Movies/MovieCreatePage";
-
+import MovieEditPage from "main/pages/Movies/MovieEditPage";
+import MovieDetailsPage from "main/pages/Movies/MovieDetailsPage";
+import MovieIndexPage from "main/pages/Movies/MovieIndexPage";
 
 function App() {
 
@@ -52,8 +54,10 @@ function App() {
         <Route exact path="/books/details/:id" element={<BookDetailsPage />} />
         <Route exact path="/books/" element={<BookIndexPage />} />
 
-        <Route exact path="/movies/create" element={<MovieCreatePage />} />
-
+        <Route exact path="/movies/create" element={<MovieCreatePage /> } />
+        <Route exact path="/movies/edit/:id" element={<MovieEditPage /> } />
+        <Route exact path="/movies/details/:id" element={<MovieDetailsPage /> } />
+        <Route exact path="/movies/" element={<MovieIndexPage /> } />
 
 
       </Routes>
