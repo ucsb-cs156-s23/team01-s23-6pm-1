@@ -39,6 +39,7 @@ describe("BookCreatePage tests", () => {
 
         mockAdd.mockReturnValue({
             "book": {
+                id: 3,
                 name: "Green Eggs and Ham",
                 author: "Dr Seuss",
                 genre: "Picture Book/Poem"
@@ -66,9 +67,9 @@ describe("BookCreatePage tests", () => {
         expect(createButton).toBeInTheDocument();
 
         await act(async () => {
-            fireEvent.change(nameInput, { target: { name: "Green Eggs and Ham" } })
-            fireEvent.change(authorInput, { target: { author: "Dr Seuss" } })
-            fireEvent.change(genreInput, { target: { genre: "Picture Book/Poem"} })
+            fireEvent.change(nameInput, { target: { value: "Green Eggs and Ham" } })
+            fireEvent.change(authorInput, { target: { value: "Dr Seuss" } })
+            fireEvent.change(genreInput, { target: { value: "Picture Book/Poem"} })
             fireEvent.click(createButton);
         });
 
