@@ -14,6 +14,10 @@ import HotelDetailsPage from "main/pages/Hotels/HotelDetailsPage";
 import HotelEditPage from "main/pages/Hotels/HotelEditPage";
 import HotelCreatePage from "main/pages/Hotels/HotelCreatePage";
 import BookCreatePage from "main/pages/Books/BookCreatePage";
+import MovieCreatePage from "main/pages/Movies/MovieCreatePage";
+import MovieEditPage from "main/pages/Movies/MovieEditPage";
+import MovieDetailsPage from "main/pages/Movies/MovieDetailsPage";
+import MovieIndexPage from "main/pages/Movies/MovieIndexPage";
 //import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 //import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 //import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
@@ -45,6 +49,10 @@ function App() {
         <Route exact path="/books/create" element={<BookCreatePage />} />
         <Route exact path="/books/" element={<HotelIndexPage />} />
 
+        <Route exact path="/movies/create" element={<MovieCreatePage /> } />
+        <Route exact path="/movies/edit/:id" element={<MovieEditPage /> } />
+        <Route exact path="/movies/details/:id" element={<MovieDetailsPage /> } />
+        <Route exact path="/movies/" element={<MovieIndexPage /> } />
 
 
       </Routes>
